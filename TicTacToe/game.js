@@ -11,6 +11,7 @@ let classLine = '';
 const cell = document.querySelectorAll('.cell');
 let humanPlayer = 'X';
 let computerPlayer = 'O';
+let currentPlayer = 'X';
 
 const winningCombinations = [
 	{ 'combination': [0, 1, 2], 'lineClass': 'line-horizontal-top' },
@@ -47,14 +48,14 @@ const checkGameEnd = () => {
 	let result = '';
 	let line = '';
 	if (checkWinner(game, humanPlayer)) {
-		result = `Vencedor ${humanPlayer}`;
+		result = `Player ${humanPlayer}`;
 		line = classLine;
 		document.querySelector("#line").className = classLine;
 	} else if (checkWinner(game, computerPlayer)) {
 		line = classLine;
-		result = `Vencedor ${computerPlayer}`;
+		result = `Player ${computerPlayer}`;
 	} else if (emptyCells(game).length === 0) {
-		result = 'Empate!';
+		result = 'It is a Draw!';
 	}
 	document.querySelector("#line").className = line;
 	document.querySelector('#result').innerHTML = result;
@@ -70,7 +71,7 @@ const mark = (el, player) => {
             document.querySelector("#line").classList.remove('d-none');
         }      
     } else {
-        throw new Error('Já foi marcado ou o jogo acabou!');
+        throw new Error('Already marked or the game is over!');
     }
 };
 
@@ -219,5 +220,22 @@ const miniMax = (gameCurrent, player, depth) => {
 
     return movePossibles[bestMove];
 }
+
+
+const startHumanVsHumanGame = () => {
+	game = new Array(9);
+    currentPlayer = 'X';
+    document.querySelector('#reset').classList.remove('d-none');
+    document.querySelector("#line").className = '';
+    document.querySelector("#line").classList.add('d-none');
+    cell.forEach((el) => {
+        el.innerHTML = '';
+        el.setAttribute('data-mark', '')
+    });
+    document.querySelector('#result').innerHTML = '';
+    showButtons();
+}
+
+document.querySelector('#reset').addEventListener('click', startHumanVsHumanGame);
 
 init();
