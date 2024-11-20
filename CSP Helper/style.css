@@ -1,6 +1,9 @@
 body {
   font-family: Arial, sans-serif;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 h1 {
@@ -70,7 +73,13 @@ h1 {
 }
 
 .controls {
-  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 800px;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
 }
 
 button {
@@ -83,6 +92,7 @@ button {
   border-radius: 5px;
   background-color: #007bff;
   color: white;
+  white-space: nowrap;
 }
 button:hover {
   background-color: #0056b3;

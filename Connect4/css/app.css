@@ -74,4 +74,9 @@ button {
     border-radius: 5px;
     background-color: #007bff;
     color: white;
+    white-space: nowrap;
+}
+
+button:hover {
+    background-color: #0056b3;
 }
