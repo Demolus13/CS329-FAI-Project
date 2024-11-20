@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Selector</title>
+    <title>Sudoku Solver</title>
     <style>
         body {
             display: flex;
@@ -16,7 +16,7 @@
             text-align: center;
         }
         button {
-            width: 200px; /* Set a fixed width for all buttons */
+            width: 200px;
             padding: 10px 20px;
             margin: 10px;
             font-size: 16px;
@@ -25,7 +25,6 @@
             border-radius: 5px;
             background-color: #007bff;
             color: white;
-            white-space: nowrap;
         }
         button:hover {
             background-color: #0056b3;
@@ -33,10 +32,11 @@
     </style>
 </head>
 <body>
-    <h1>Welcome to the Game Selector</h1>
-    <p>Choose a game to play from the options below:</p>
-    <button onclick="window.location.href='/CS329-FAI-Project/Connect4/index.html'">Connect 4</button>
-    <button onclick="window.location.href='/CS329-FAI-Project/TicTacToe/index.html'">Tic Tac Toe</button>
-    <button onclick="window.location.href='/CS329-FAI-Project/Sudoku/index.html'">Sudoku Solver</button>
+    <h1>Sudoku Solver</h1>
+    <p>Choose an option below to proceed:</p>
+    <div style="display: flex; justify-content: center;">
+        <button onclick="window.location.href='./CSPHelper/index.html'">CSP Helper</button>
+        <button onclick="window.location.href='./CSPSolver/index.html'">CSP Solver</button>
+    </div>
 </body>
 </html>
