@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Tic-Tac-Toe with MiniMax AI">
@@ -11,7 +10,6 @@
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
 </head>
-
 <body>
     <div class="content">
         <div class="container">
@@ -77,13 +75,14 @@
         document.getElementById('computer').addEventListener('click', function() {
             document.getElementById('home-buttons').classList.add('d-none');
             document.getElementById('computer-buttons').classList.remove('d-none');
+            gameMode = 'computer';
         });
         document.getElementById('human').addEventListener('click', function() {
             document.getElementById('home-buttons').classList.add('d-none');
             document.getElementById('human-buttons').classList.remove('d-none');
+            gameMode = 'human';
             startHumanVsHumanGame();
         });
     </script>
 </body>
-
 </html>
