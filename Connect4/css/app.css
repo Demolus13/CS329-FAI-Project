@@ -1,17 +1,18 @@
 body {
-    background-color: black;
     background-size: 100%;
     color: lightyellow;
     display: flex;
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
+    color: black;
 }
 
 h1 {
     font-size: 3rem;
     text-align: center;
-    margin: 60px auto;
+    margin: 30px auto;
+    color: black;
 }
 
 h2 {
@@ -21,20 +22,23 @@ h2 {
 td {
     width: 60px;
     height: 60px;
-    border: 1px solid blue;
+    border: 1px solid black;
     border-radius: 100%;
     cursor: pointer;
-    box-shadow: -1px 2px 10px 3px rgba(0, 0, 0, 0.4) inset;
 }
 
 #board {
     min-width: 450px;
-    border: 10px solid blue;
+    border: 10px solid black;
     border-radius: 10px;
-    background-color: blue;
-    box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
-    margin-bottom: 60px;
+    background-color: black;
+    margin-bottom: 30px;
     display: none;
+}
+
+#game-buttons {
+    display: none;
+    margin-top: 20px;
 }
 
 .empty {
@@ -61,9 +65,13 @@ td {
 }
 
 button {
-    border-radius: 4px;
-    border: none;
-    padding: 8px 16px;
+    width: 200px; /* Set a fixed width for all buttons */
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
     cursor: pointer;
-    margin: 8px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
 }

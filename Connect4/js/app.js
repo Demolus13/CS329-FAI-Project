@@ -6,7 +6,11 @@ const BOARDWIDTH = 7
 const initBoard = (height, width) => {
   const boardElt = document.querySelector('#board')
   const messageElt = document.querySelector('#message')
+  const gameModeElt = document.querySelector('#game-buttons')
 
+  while (boardElt.firstChild) {
+    boardElt.removeChild(boardElt.firstChild)
+  }
   const tableElt = document.createElement('table')
   boardElt.appendChild(tableElt)
   const board = Array.from({ length: height }, () => [])
@@ -23,6 +27,7 @@ const initBoard = (height, width) => {
   }
   boardElt.style.display = 'block'
   messageElt.style.display = 'block'
+  gameModeElt.style.display = 'block'
   return board
 }
 
@@ -272,14 +277,21 @@ const selectGameMode = () => {
 }
 
 const game = (mode) => {
-  const board = initBoard(BOARDHEIGHT, BOARDWIDTH)
+  let board = initBoard(BOARDHEIGHT, BOARDWIDTH)
   const maxNumberOfTurns = BOARDHEIGHT * BOARDWIDTH
   const messageElt = document.querySelector('#message')
+  const backButton = document.getElementById('back')
   let turnCounter = 0
   let player = 'player1'
   let gameOver = false
   let blockedInput = false
   let vsComputer = mode === 'computer'
+
+  const backToMenu = () => {
+    window.location.href = '/Connect4/';
+  }
+
+  backButton.addEventListener('click', backToMenu);
 
   document.querySelector('table').addEventListener('click', async function (e) {
     if (
@@ -292,6 +304,7 @@ const game = (mode) => {
     }
     const colNumber = parseInt(e.target.dataset.column, 10)
     const rowNumber = getLowestEmptyRowNumber(board, colNumber)
+    console.log(rowNumber, colNumber)
     if (rowNumber < 0) {
       return // Column is full
     }
