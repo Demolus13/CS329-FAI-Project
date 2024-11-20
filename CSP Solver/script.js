@@ -3,6 +3,13 @@ const solveBtn = document.getElementById('solve-btn');
 const resetBtn = document.getElementById('reset-btn');
 const pause_resumeBtn = document.getElementById('pause-resume-btn');
 
+const speedSlider = document.getElementById('speed-slider');
+function getDelayFromSpeed(speed) {
+    const maxSpeed = 500; // Maximum delay in ms for the lowest speed
+    return maxSpeed - speed; // Higher slider values mean shorter delays
+}
+
+
 let paused = false;  // Track whether the visualization is paused
 
 pause_resumeBtn.addEventListener('click', () => {
@@ -18,18 +25,104 @@ pause_resumeBtn.addEventListener('click', () => {
     }
 });
 
+const sudokuPuzzles = [
+    [
+        [5, 3, 0, 0, 7, 0, 0, 0, 0],
+        [6, 0, 0, 1, 9, 5, 0, 0, 0],
+        [0, 9, 8, 0, 0, 0, 0, 6, 0],
+        [8, 0, 0, 0, 6, 0, 0, 0, 3],
+        [4, 0, 0, 8, 0, 3, 0, 0, 1],
+        [7, 0, 0, 0, 2, 0, 0, 0, 6],
+        [0, 6, 0, 0, 0, 0, 2, 8, 0],
+        [0, 0, 0, 4, 1, 9, 0, 0, 5],
+        [0, 0, 0, 0, 8, 0, 0, 7, 9]
+    ],
+    [
+        [0, 0, 0, 6, 0, 0, 0, 0, 1],
+        [9, 0, 1, 0, 0, 4, 0, 0, 0],
+        [0, 4, 5, 0, 0, 0, 3, 9, 0],
+        [5, 6, 7, 0, 1, 8, 9, 0, 4],
+        [0, 3, 0, 0, 2, 6, 0, 0, 0],
+        [2, 0, 9, 0, 4, 7, 8, 6, 3],
+        [0, 5, 0, 0, 0, 9, 0, 0, 0],
+        [7, 0, 0, 4, 0, 0, 6, 1, 0],
+        [0, 0, 0, 7, 0, 3, 2, 0, 9]
+    ],
+    [
+        [0, 0, 6, 0, 4, 5, 0, 7, 8],
+        [8, 0, 1, 0, 0, 6, 9, 4, 3],
+        [0, 0, 0, 0, 9, 1, 0, 0, 0],
+        [7, 0, 0, 0, 0, 0, 8, 0, 5],
+        [6, 8, 0, 0, 0, 9, 0, 3, 0],
+        [2, 0, 9, 0, 0, 8, 0, 0, 7],
+        [5, 0, 8, 0, 1, 0, 0, 2, 0],
+        [3, 0, 0, 6, 0, 7, 0, 0, 0],
+        [0, 9, 7, 0, 5, 4, 3, 8, 6]
+    ],
+    [
+        [0, 0, 0, 9, 0, 0, 0, 0, 3],
+        [0, 0, 4, 8, 1, 0, 0, 2, 0],
+        [0, 2, 0, 0, 0, 7, 1, 0, 8],
+        [0, 0, 0, 0, 0, 0, 9, 7, 4],
+        [0, 0, 0, 0, 0, 3, 0, 0, 0],
+        [0, 0, 6, 2, 9, 1, 0, 0, 0],
+        [7, 0, 0, 0, 8, 6, 0, 0, 0],
+        [0, 0, 0, 3, 2, 4, 7, 8, 6],
+        [0, 0, 8, 0, 0, 0, 0, 5, 2]
+    ],
+    [
+        [2, 0, 3, 0, 4, 0, 0, 0, 1],
+        [0, 0, 7, 0, 0, 0, 0, 0, 0],
+        [0, 0, 1, 9, 0, 0, 8, 0, 0],
+        [4, 0, 0, 0, 2, 0, 0, 0, 3],
+        [0, 0, 2, 0, 3, 0, 0, 6, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0, 5],
+        [0, 0, 0, 4, 0, 0, 1, 0, 0],
+        [9, 0, 0, 0, 0, 0, 0, 0, 6],
+        [0, 5, 0, 6, 0, 0, 0, 0, 0],
+
+    ],
+    [
+        [0, 0, 3, 1, 0, 0, 0, 0, 4],
+        [9, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 2, 0, 5, 0, 0, 0, 1, 0],
+        [1, 0, 0, 0, 8, 0, 0, 0, 0],
+        [0, 0, 8, 7, 3, 0, 0, 0, 2],
+        [0, 0, 4, 0, 0, 9, 0, 0, 0],
+        [0, 7, 1, 0, 0, 6, 0, 4, 0],
+        [3, 0, 0, 0, 5, 0, 0, 0, 6],
+        [0, 0, 6, 0, 0, 3, 0, 9, 0]
+
+    ],
+    [
+        [7, 0, 0, 0, 6, 0, 0, 0, 0],
+        [0, 0, 8, 7, 0, 0, 9, 0, 0],
+        [4, 0, 0, 0, 2, 0, 5, 1, 0],
+        [0, 0, 0, 9, 4, 8, 7, 0, 0],
+        [6, 4, 0, 0, 0, 0, 0, 0, 0],
+        [0, 2, 7, 0, 0, 0, 0, 5, 0],
+        [0, 0, 2, 0, 0, 0, 0, 0, 0],
+        [1, 0, 5, 0, 0, 0, 0, 0, 3],
+        [0, 0, 0, 5, 0, 6, 0, 0, 0]
+
+    ]
+]
+
+const randomIndex = Math.floor(Math.random() * sudokuPuzzles.length);
+const puzzle = sudokuPuzzles[randomIndex];
+
 // Prefilled Sudoku puzzle
-const puzzle = [
-    [5, 3, 0, 0, 7, 0, 0, 0, 0],
-    [6, 0, 0, 1, 9, 5, 0, 0, 0],
-    [0, 9, 8, 0, 0, 0, 0, 6, 0],
-    [8, 0, 0, 0, 6, 0, 0, 0, 3],
-    [4, 0, 0, 8, 0, 3, 0, 0, 1],
-    [7, 0, 0, 0, 2, 0, 0, 0, 6],
-    [0, 6, 0, 0, 0, 0, 2, 8, 0],
-    [0, 0, 0, 4, 1, 9, 0, 0, 5],
-    [0, 0, 0, 0, 8, 0, 0, 7, 9]
-];
+// const puzzle = [
+//     [8, 0, 0, 0, 0, 0, 0, 0, 0],
+//     [0, 0, 3, 6, 0, 0, 0, 0, 0],
+//     [0, 7, 0, 0, 9, 0, 2, 0, 0],
+//     [0, 5, 0, 0, 0, 7, 0, 0, 0],
+//     [0, 0, 0, 0, 4, 5, 7, 0, 0],
+//     [0, 0, 0, 1, 0, 0, 0, 3, 0],
+//     [0, 0, 1, 0, 0, 0, 0, 6, 8],
+//     [0, 0, 8, 5, 0, 0, 0, 1, 0],
+//     [0, 9, 0, 0, 0, 0, 4, 0, 0]
+// ];
 
 // Create a 9x9 Sudoku grid
 function createGrid() {
@@ -269,14 +362,16 @@ class SudokuSolver {
     }
 
     stepThrough() {
-        if (this.steps.length > 0 && !paused) {  // Check if not paused
+        if (this.steps.length > 0 && !paused) {
             const step = this.steps.shift();
 
             this.visualizeStep(step);
 
-            setTimeout(() => this.stepThrough(), 1000); // Visualize step by step
+            const delay = getDelayFromSpeed(speedSlider.value); // Calculate delay based on slider value
+            setTimeout(() => this.stepThrough(), delay);
         }
     }
+
 
     reset() {
         this.stopVisualization = true; // Stop visualization
@@ -310,6 +405,7 @@ const solver = new SudokuSolver();
 solveBtn.addEventListener('click', () => {
     // solver.initGrid();
     solver.solve();
+    // console.log(solver.grid);
     solver.stepThrough(); // Visualize solution step by step
 });
 
