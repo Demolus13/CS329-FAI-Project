@@ -288,7 +288,7 @@ const game = (mode) => {
   let vsComputer = mode === 'computer'
 
   const backToMenu = () => {
-    window.location.href = '/Connect4/';
+    window.location.href = '/CS329-FAI-Project/Connect4/';
   }
 
   backButton.addEventListener('click', backToMenu);
