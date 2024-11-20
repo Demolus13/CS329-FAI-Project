@@ -17,12 +17,20 @@
         </table>
     </div>
 
+    <div>
+        <label for="speed-slider">Speed:</label>
+        <input id="speed-slider" type="range" min="1" max="499" value="250">
+    </div>
     <div class="controls">
         <button id="solve-btn">Start Solving</button>
         <button id="pause-resume-btn">Pause</button>
         <button id="reset-btn">Reset</button>
-        <button id="home" onclick="window.location.href='/CS329-FAI-Project/'">Home</button>
     </div>
+
+    <button id="home" onclick="window.location.href='/CS329-FAI-Project/'">Home</button>
+    <button id="refresh-btn" onclick="location.reload()">Random</button> <!-- New Refresh Button -->
+
+
 
     <script src="script.js"></script>
 </body>
