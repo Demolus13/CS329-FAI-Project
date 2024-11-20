@@ -1,0 +1,88 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+#sudoku-container {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+#sudoku-grid {
+  border-collapse: collapse;
+}
+
+#sudoku-grid td {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  font-size: 20px;
+  border: 1px solid black;
+  padding: 0;
+  position: relative;
+}
+
+/* Add thicker borders to create 3x3 Sudoku grid sections */
+#sudoku-grid tr:nth-child(3n) td {
+  border-bottom: 3px solid black;
+}
+
+#sudoku-grid tr td:nth-child(3n) {
+  border-right: 3px solid black;
+}
+
+#sudoku-grid tr:nth-child(1) td {
+  border-top: 3px solid black;
+}
+
+#sudoku-grid tr td:nth-child(1) {
+  border-left: 3px solid black;
+}
+
+#sudoku-grid input {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  border: none;
+  font-size: 20px;
+  padding: 0;
+}
+
+.cell-domain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  font-size: 12px;
+  line-height: 40px;
+  text-align: center;
+  display: none;
+}
+
+.cell-domain.show {
+  display: block;
+}
+
+.controls {
+  margin-top: 20px;
+}
+
+button {
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.highlight {
+  background-color: yellow;
+}
+
+.conflict {
+  background-color: red;
+}
