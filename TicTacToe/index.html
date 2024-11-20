@@ -2,93 +2,65 @@
 <html>
 
 <head>
-    <title>Faisal's TicTacToe</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="favicon.png">
-
+    <meta charset="UTF-8">
+    <meta name="author" content="Anderson Pereira dos Santos">
+    <meta name="description" content="Tic-Tac-Toe with MiniMax AI">
+    <meta name="keywords" content="Tic-Tac-Toe, MiniMax, AI, JavaScript, Game Development">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe with MiniMax AI</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <link rel="license" href="https://github.com/andersonpereiradossantos/tic-tac-toe-ai-minimax/blob/main/LICENSE">
+    <link rel="author" href="https://github.com/andersonpereiradossantos/tic-tac-toe-ai-minimax">
+    <link rel="repository" href="https://github.com/andersonpereiradossantos/tic-tac-toe-ai-minimax">
 </head>
 
-
 <body>
-    <div class='score'>
-        <div class="score-header">
-            Scores
-        </div>
-        <div class="player-scores X">
-            Player X: <span id="score-X">0</span>
-        </div>
-        <div class="player-scores O">
-            Player O: <span id="score-O">0</span>
-        </div>
-
-    </div>
-    <div class="container">
-        <h1 class="welcome-text">
-            Welcome to Faisal's Tic-Tac-Toe!<br>
-            <span class="mode-select">
-                <span class="mode PvC" onclick="onGameModeChange('PvC', this)">
-                    1 Player
-                </span>
-                <span onclick="onGameModeChange('PvP', this)" class="mode PvP mode-selected">
-                    2 Players
-                </span>
-            </span>
-        </h1>
-        <div class="filler"></div>
-        <div class="turn-indicator">
-            Player <span class="current-player">X</span>'s Turn
-        </div>
-        <div class="filler"></div>
-        <div>
-            <input class="box" readonly type="text" id="0-0">
-            <input class="box" readonly type="text" id="0-1">
-            <input class="box" readonly type="text" id="0-2">
-        </div>
-
-        <div>
-            <input class="box" readonly type="text" id="1-0">
-            <input class="box" readonly type="text" id="1-1">
-            <input class="box" readonly type="text" id="1-2">
-        </div>
-
-        <div>
-            <input class="box" readonly type="text" id="2-0">
-            <input class="box" readonly type="text" id="2-1">
-            <input class="box" readonly type="text" id="2-2">
-        </div>
-        <div class="button-wrapper">
-            <button id="new-game" class="okay-button">New Game</button>
-        </div>
-        <div class="winner-screen fade-out">
-            <div class="overlay">
+    <div class="content">
+        <div class="container">
+            <div class="jumbotron">
+                <h1 class="display-2 text-center text-uppercase">Tic-Tac-Toe</h1>
+                <hr class="mx-4">
             </div>
-            <div class="message-box">
-                <div class="title">Game Over</div>
-                <div class="body">Player X Won!</div>
-                <button class="okay-button">New Game</button>
+            <div class="row">
+                <div id="result" class="col-md-12 text-center"></div>
             </div>
-        </div>
-
-    </div>
-
-    <!-- Loader -->
-
-    <div class="loader-overlay">
-            <div class="lds-grid">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="d-inline-block mt-5">
+                        <div id="line" class="d-none"></div>
+                        <div class="row">
+                            <div class="cell p-0 border border-dark border-start-0 border-top-0 border-end-0"></div>
+                            <div class="cell p-0 border border-dark border-top-0 border-end-0"></div>
+                            <div class="cell p-0 border border-dark border-top-0 border-end-0"></div>
+                        </div>
+                        <div class="row">
+                            <div class="cell p-0 border border-dark border-start-0 border-top-0 border-end-0"></div>
+                            <div class="cell p-0 border border-dark border-top-0 border-end-0"></div>
+                            <div class="cell p-0 border border-dark border-top-0 border-end-0"></div>
+                        </div>
+                        <div class="row">
+                            <div class="cell p-0 border border-dark border-start-0 border-top-0 border-end-0 border-bottom-0"></div>
+                            <div class="cell p-0 border border-dark border-top-0 border-end-0 border-bottom-0 "></div>
+                            <div class="cell p-0 border border-dark border-top-0 border-end-0 border-bottom-0 "></div>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-12 mt-5">
+                        <button id="selectX">Choose X</button>
+                        <button id="selectO">Choose O</button>
+                        <button id="reset" class="d-none">Reset</button>
+                        <button id="home" onclick="window.location.href='/CS329-FAI-Project/'">Home</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-
-    <script src="script.js"></script>
+    <script src="game.js"></script>
 </body>
 
 </html>

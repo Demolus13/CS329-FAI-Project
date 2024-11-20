@@ -74,9 +74,18 @@ h1 {
 }
 
 button {
-  margin: 5px;
+  width: 200px; /* Set a fixed width for all buttons */
   padding: 10px 20px;
+  margin: 10px;
   font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+}
+button:hover {
+  background-color: #0056b3;
 }
 
 .highlight {
