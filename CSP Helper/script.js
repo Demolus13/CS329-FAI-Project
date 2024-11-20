@@ -112,6 +112,7 @@ const sudokuPuzzles = [
 
 const randomIndex = Math.floor(Math.random() * sudokuPuzzles.length);
 const puzzle = sudokuPuzzles[randomIndex];
+
 // Create a 9x9 Sudoku grid
 function createGrid() {
     for (let row = 0; row < 9; row++) {
